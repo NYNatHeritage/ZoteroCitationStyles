@@ -156,7 +156,7 @@
           </group>
           <group prefix=" " suffix=".">
             <text variable="container-title"/>
-            <group prefix=", ">
+            <group prefix=" ">
               <text variable="volume"/>
             </group>
             <text variable="page" prefix=":"/>
