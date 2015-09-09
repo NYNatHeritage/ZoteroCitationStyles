@@ -30,7 +30,7 @@
   </macro>
   <macro name="author">
     <names variable="author">
-      <name name-as-sort-order="all" and="symbol" sort-separator=" " initialize-with="" delimiter=", " delimiter-precedes-last="never"/>
+      <name name-as-sort-order="all" and="" sort-separator=" " initialize-with="" delimiter=", " delimiter-precedes-last="never"/>
       <label form="short" prefix=" (" suffix=")" strip-periods="true"/>
       <substitute>
         <names variable="editor"/>
@@ -87,7 +87,7 @@
       <text variable="publisher-place"/>
     </group>
   </macro>
-  <citation collapse="year-suffix" et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true">
+  <citation collapse="year-suffix" et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
     <sort>
       <key variable="issued"/>
       <key variable="author"/>
@@ -111,7 +111,7 @@
       <key variable="issued"/>
     </sort>
     <layout>
-      <text macro="author" suffix="."/>
+      <text macro="author" suffix=""/>
       <date variable="issued" prefix=" (" suffix=")">
         <date-part name="year"/>
       </date>
