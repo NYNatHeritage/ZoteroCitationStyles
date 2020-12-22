@@ -21,7 +21,7 @@
   <macro name="container-contributors">
     <choose>
       <if type="chapter paper-conference" match="any">
-        <text term="in" suffix=" " font-style="italic"/>
+        <!--<text term="in" suffix=" " font-style="italic"/>-->
         <names variable="editor translator" delimiter=", ">
           <name and="text" initialize-with=". " delimiter=", "/>
           <label form="long" prefix=", " suffix="."/>
@@ -169,9 +169,18 @@
   <macro name="locators">
     <choose>
       <if type="article-journal article-magazine article-newspaper paper-conference" match="any">
-        <text variable="container-title" prefix=". "/>
-        <text variable="volume" prefix=" "/>
-        <text variable="page" prefix=":" suffix=". "/>
+        <text variable="container-title" prefix=" "/>
+        <choose>
+          <if variable="page">
+            <text variable="volume" prefix=" "/>
+            <text variable="issue" prefix="(" suffix=")"/>
+            <text variable="page" prefix=":" suffix=". "/>
+          </if>
+          <else>
+            <text variable="volume" prefix=" "/>
+            <text variable="issue" prefix="(" suffix=").  "/>
+          </else>
+        </choose>
       </if>
       <else-if type="bill graphic" match="any">
         <group prefix=". " delimiter=" ">
@@ -183,16 +192,16 @@
         </group>
       </else-if>
       <else-if type="book report" match="any">
-        <group prefix=". " delimiter=" ">
+        <group prefix=" " delimiter=" ">
           <text variable="page" suffix=" pages."/>
         </group>
       </else-if>
       <else-if type="chapter" match="any">
-        <group prefix=". " delimiter=" ">
+        <group delimiter=" ">
           <text variable="page" prefix="Pages " suffix=" in "/>
           <text macro="container-contributors"/>
           <text macro="secondary-contributors"/>
-          <text variable="container-title"/>
+          <text variable="container-title" suffix=". "/>
         </group>
       </else-if>
     </choose>
@@ -234,22 +243,22 @@
     <layout>
         <text macro="author" suffix="."/>
         <text macro="issued" suffix=" "/>
-        <text variable="title"/>
-        <text variable="event" prefix = ". "/>
+        <text variable="title" suffix=". "/>
+        <text variable="event"/>
       <choose>
         <if type="book report" match="none">
           <text macro="locators"/>
           <text macro="edition"/>
           <text macro="access" prefix=" "/>
-          <group delimiter=". " prefix=". ">
+          <group delimiter=". " suffix=". ">
             <text macro="publisher"/>
           </group>
         </if>
         <else-if type="book report" match="any">
           <text macro="edition"/>
           <text macro="access" prefix=" "/>
-          <group delimiter=". " prefix=". ">
-            <text macro="publisher"/>
+          <group delimiter=". " prefix=" ">
+            <text macro="publisher" suffix=". "/>
           </group>
           <text macro="locators" suffix=". "/>
         </else-if>
