@@ -169,18 +169,20 @@
   <macro name="locators">
     <choose>
       <if type="article-journal article-magazine article-newspaper paper-conference" match="any">
-        <text variable="container-title" prefix=" "/>
-        <choose>
-          <if variable="page">
-            <text variable="volume" prefix=" "/>
-            <text variable="issue" prefix="(" suffix=")"/>
-            <text variable="page" prefix=":" suffix=". "/>
-          </if>
-          <else>
-            <text variable="volume" prefix=" "/>
-            <text variable="issue" prefix="(" suffix=").  "/>
-          </else>
-        </choose>
+        <group suffix=".">
+          <text variable="container-title" prefix=" " suffix=", "/>
+          <choose>
+            <if variable="page">
+              <text variable="volume" prefix=" "/>
+              <text variable="issue" prefix="(" suffix=")"/>
+              <text variable="page" prefix=":" />
+            </if>
+            <else>
+              <text variable="volume" prefix=" "/>
+              <text variable="issue" prefix="(" suffix=") "/>
+            </else>
+          </choose>
+        </group>
       </if>
       <else-if type="bill graphic" match="any">
         <group prefix=". " delimiter=" ">
@@ -215,10 +217,10 @@
   <macro name="URL-text">
     <choose>
       <if variable="DOI">
-        <text variable="DOI" suffix="."/>
+        <text variable="DOI" prefix=" " suffix="."/>
       </if>
       <else>
-        <text variable="URL" suffix="."/>
+        <text variable="URL" prefix=" " suffix="."/>
       </else>
     </choose>
   </macro>
